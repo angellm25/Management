@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 })
 
 //create room types
-app.post('./api/v1/room-types', async (req, res) => {
+app.post('/api/v1/room-types', async (req, res) => {
     try{
         const data = await control.addRoomTypes()
         res.status(200).send({message: MESSAGE.CREATED })
@@ -32,7 +32,7 @@ app.post('./api/v1/room-types', async (req, res) => {
 
 
 // fetch all room types 
-app.get('./api/v1/rooms-types', async (req, res) => {
+app.get('/api/v1/rooms-types', async (req, res) => {
     try {
         const rooms =await control.getRoomTypes()
         res.status(200).send({message: MESSAGE.FETCH, data: ROOM_TYPES})
@@ -43,7 +43,7 @@ app.get('./api/v1/rooms-types', async (req, res) => {
 
 
 //create rooms
-app.post('./api/v1/rooms', async(req, res) => {
+app.post('/api/v1/rooms', async(req, res) => {
     try{
         const data = await control.addRoom()
         res.status(200).send({message: MESSAGE.FETCH})
@@ -54,7 +54,7 @@ app.post('./api/v1/rooms', async(req, res) => {
 
 
 //fetch all rooms with filters
-app.get('./api/v1/rooms?search={searchRoomNameMatch}&roomType={searchRoomTypeNameMatch}&minPrice={searchRoomMinimumPriceMatch}*maxPrice={searchRoomMaximumPriceMatch}',async (req, res) => {
+app.get('/api/v1/rooms?search={searchRoomNameMatch}&roomType={searchRoomTypeNameMatch}&minPrice={searchRoomMinimumPriceMatch}*maxPrice={searchRoomMaximumPriceMatch}',async (req, res) => {
     try{
         const data = await control.getRoom()
         res.status(200).send({message: MESSAGE.FETCH})
@@ -65,7 +65,7 @@ app.get('./api/v1/rooms?search={searchRoomNameMatch}&roomType={searchRoomTypeNam
 
 
 // editing rooms
-app.patch('./api/v1/rooms/{roomId}', async(req, res) => {
+app.patch('/api/v1/rooms/{roomId}', async(req, res) => {
     try{
         const {id} = req.params.id
         const body = req.body //no idea where body came from!!!!
@@ -77,7 +77,7 @@ app.patch('./api/v1/rooms/{roomId}', async(req, res) => {
 })
 
 //deleting rooms
-app.delete('./api/v1/rooms/{roomId}', async(req, res) => {
+app.delete('/api/v1/rooms/{roomId}', async(req, res) => {
     try {
         const {id} = req.params.id
 
@@ -89,7 +89,7 @@ app.delete('./api/v1/rooms/{roomId}', async(req, res) => {
 })
 
 //fetch room with Id
-app.get('./api/v1/rooms{roomId}', async (req, res) => {
+app.get('/api/v1/rooms{roomId}', async (req, res) => {
     try{
         const {id} = req.params.id 
         const data = await control.getRoomById()

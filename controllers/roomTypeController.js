@@ -1,24 +1,24 @@
 const roomTypeService = require('../services/roomType.service');
 
-class RoomTypeController{
+class RoomTypeController {
 
-async addRoomType(req, res) {  
-    const body = req.body
+    async addRoomType(req, res) {
 
-    const existingRoomType = await roomTypeService.getRoomTypes({title: body.title.toLowerCase()})
-    if(existingRoomType) return res.status(403).json({
-        success: false,
-        message: 'RoomType already exists'
-    })
+        const body = req.body
 
-    const createdRoomType = await roomTypeService.addRoomType(body)
+        const existingRoomtype = await roomTypeService.getRoomtypes({})
+        if(existingRoomtype) return res.status(404).send({success: false, message: "Roomtype already exists",})
+
+        const CreatedRoomType = await roomTypeService.addRoomType(body)
+        return res.satus(200).send({success: true, message: "Roomtype created successfully", data: CreatedRoomType})
+    }
 
 
-    return res.status(201).json({
-        success: true,
-        message: 'Room Type Created Successfully',
-        data: createdRoomType
-    })
+    async getRoomTypes(req, res) {
+        const allRoomtypes = await roomTypeService.getRoomtypes()
+        return res.status(200).send({success: true, message: "Roomtypes fetched sucessfully", data: allRoomtypes})
+    }
 }
 
-}
+
+module.exports = RoomTypeController()

@@ -9,7 +9,7 @@ class roomService {
     }
     
     // get single room
-    async getRoom(filter) {  
+    async getRooms(filter) {  
         return await Room.findOne(filter)
             }
     
@@ -20,7 +20,7 @@ class roomService {
     return await Room.findOne({ _id: id})
    }
 
-    async updateROom(id, Updatedata){
+    async updateRoom(id, Updatedata){
        return await Room.findByIdAndUpdate(id, Updatedata, {new: true})
     }
 

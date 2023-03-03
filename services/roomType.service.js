@@ -1,4 +1,4 @@
-const RoomType = require('../models/roomTypeModel');
+const RoomType = require('../model/roomTypeModel');
 
 class roomTypeService {
 

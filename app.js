@@ -14,6 +14,11 @@ const app = express();
 
 app.use(LOGGER)
 
+app.get('/users', authorizeUsersAccess, (req, res) => {
+    console.log(req.admin)
+    res.send('Users Page')
+})
+
 function LOGGER (req, res, next) {
     console.log('Inside Middleware')
     next()
@@ -29,9 +34,7 @@ function authorizeUsersAccess(req, res, next) {
     
 }
 
-app.get('/users', authorizeUsersAccess, (req, res) => {
-    res.send('Users Page')
-})
+
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false}))
